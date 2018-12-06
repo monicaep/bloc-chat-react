@@ -17,6 +17,7 @@ var config = {
 class App extends Component {
   constructor(props) {
     super(props);
+
   }
 
   render() {
@@ -26,7 +27,7 @@ class App extends Component {
           <h1> Bloc Chat </h1>
         </header>
         <section className="roomList">
-          <RoomList />
+          <RoomList firebase={firebase} />
         </section>
       </div>
     );
