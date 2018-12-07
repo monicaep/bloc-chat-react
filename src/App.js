@@ -15,10 +15,6 @@ var config = {
   firebase.initializeApp(config);
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   render() {
     return (
@@ -27,7 +23,9 @@ class App extends Component {
           <h1> Bloc Chat </h1>
         </header>
         <section className="roomList">
-          <RoomList firebase={firebase} />
+          <RoomList
+            firebase={firebase}
+          />
         </section>
       </div>
     );
