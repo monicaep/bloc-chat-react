@@ -16,6 +16,19 @@ var config = {
   firebase.initializeApp(config);
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      activeRoom: " "
+    };
+
+  }
+
+  handleClick(roomId) {
+    this.setState({ activeRoom: roomId });
+    //console.log(this.state.activeRoom);
+  }
 
   render() {
     return (
@@ -26,11 +39,13 @@ class App extends Component {
         <section className="roomList">
           <RoomList
             firebase={firebase}
+            handleClick={(roomId) => this.handleClick(roomId)}
           />
         </section>
         <section className="messageList">
           <MessageList
             firebase={firebase}
+            activeRoom = {this.state.activeRoom}
           />
         </section>
       </div>
