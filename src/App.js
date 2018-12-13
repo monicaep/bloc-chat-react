@@ -27,7 +27,6 @@ class App extends Component {
 
   handleClick(roomId) {
     this.setState({ activeRoom: roomId });
-    //console.log(this.state.activeRoom);
   }
 
   render() {
