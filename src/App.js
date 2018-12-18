@@ -29,10 +29,20 @@ class App extends Component {
 
   handleClick(roomId) {
     this.setState({ activeRoom: roomId });
+    console.log({roomId});
   }
 
   setUser(user) {
-    this.setState({activeUser: user});
+    this.setState({ activeUser: user });
+  }
+
+  handleSignIn(e) {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup( provider );
+  }
+
+  handleSignOut(e) {
+    firebase.auth().signOut();
   }
 
   render() {
@@ -51,6 +61,7 @@ class App extends Component {
           <MessageList
             firebase={firebase}
             activeRoom = {this.state.activeRoom}
+            activeUser={this.state.activeUser}
           />
         </section>
         <section className="setUsername">
@@ -58,6 +69,8 @@ class App extends Component {
             firebase={firebase}
             setUser={(user) => this.setUser(user)}
             activeUser={this.state.activeUser}
+            handleSignIn={(e) => this.handleSignIn(e)}
+            handleSignOut={(e) => this.handleSignOut(e)}
           />
         </section>
       </div>
