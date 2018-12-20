@@ -37,17 +37,25 @@ class MessageList extends Component {
 
   render() {
     return (
-      <div>
-        <ul className="messageList">
-          {
-            this.state.messages.filter(message =>
-              this.props.activeRoom.key === message.roomId).map( (message, index) =>
-              <li className='messageName' key={index}>
-              {message.username}: {message.content}
-              </li>
-            )
-          }
-        </ul>
+      <div className='messages'>
+        <p id='current-room'>{this.props.activeRoom.name}</p>
+        <table className='messageList'>
+          <colgroup>
+            <col id='username-content-column' />
+            <col id='timestamp-column' />
+          </colgroup>
+          <tbody>
+            {
+              this.state.messages.filter(message =>
+                this.props.activeRoom.key === message.roomId).map( (message, index) =>
+                <tr className='messageName' key={index} >
+                  <td> {message.username}: {message.content} </td>
+                  <td> {message.sentAt} </td>
+                </tr>
+              )
+            }
+          </tbody>
+        </table>
         <form className='createMessage' onSubmit={(e) => this.createMessage(e)} >
           <input type="text" value={this.state.newMessage} onChange={(e) => this.handleChange(e)} />
           <input type="submit" value="Send Message" />
